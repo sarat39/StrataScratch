@@ -1,0 +1,5 @@
+/*Find the number of Yelp businesses that sell pizza*/
+
+Solution 1: 
+
+select count(distinct business_id) from yelp_business where lower(categories) like '%pizza%';
