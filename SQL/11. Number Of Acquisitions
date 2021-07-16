@@ -1,0 +1,8 @@
+/* Find the number of acquisitions that occurred in each quarter. Output the acquired quarter along with the number of acquisitions and order results by the quarters with the highest number of acquisitions first.
+*/
+
+Solution 1 : 
+
+select acquired_quarter,count(1) cnt_acq from crunchbase_acquisitions 
+group by acquired_quarter
+order by cnt_acq desc;
