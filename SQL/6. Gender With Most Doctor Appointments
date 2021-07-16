@@ -1,0 +1,20 @@
+/*Find the gender that has made the most number of doctor appointments.
+Output the gender along with the corresponding number of appointments.
+*/
+
+
+Solution 1: 
+
+select gender,count(appointmentid) n_appointments from medical_appointments
+group by gender
+order by n_appointments desc 
+limit 1
+
+
+Solution 2 : 
+
+select gender,count(appointmentid) over(partition by gender) n_appointments from medical_appointments
+order by n_appointments desc 
+limit 1
+
+
