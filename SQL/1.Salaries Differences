@@ -1,0 +1,19 @@
+/*
+Write a query that calculates the difference between the highest salaries found in the marketing and engineering departments. 
+Output just the difference in salaries.
+*/
+
+Solution 1 : 
+
+select m.sal-e.sal as salary_difference from
+(select max(Salary) sal from db_employee a , db_dept b where a.department_id=b.id and b.id=4) m,
+(select max(Salary) sal  from db_employee a , db_dept b where a.department_id=b.id and b.id=1) e
+
+
+Solutio  2:
+
+select b-a as difference from
+    (select 
+    max(case when department_id = 1 then salary end) as a,
+    max(case when department_id = 4 then salary end) as b
+    from db_employee) a ;
