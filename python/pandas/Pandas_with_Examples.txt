@@ -1,0 +1,254 @@
+Pandas Cheat Sheet :
+
+Reference Docs :
+    
+     1. https://towardsdatascience.com/my-python-pandas-cheat-sheet-746b11e44368
+     2. 
+
+
+Below are the important pandas function categories that are important to know.
+
+  1. Setup 
+  2. Import 
+  3. Exporting 
+  4. Viewing Inspecting
+  5. Selecting 
+  6. Adding/dropping
+  7. Combining 
+  8. Filtering 
+  9. Sorting 
+  10. Aggregating 
+  11. Cleaning 
+  12. Other 
+  13. Conclusion 
+  
+  
+1. Setup :
+
+First we need to import the necessary dataset and place it in the necessary folder 
+
+2. Import :
+
+Load CSV : Convert a CSV directly into a dataframe. Sometimes loading data from CSV also requires sepcifying an 
+encoding (ie: encoding ='ISO-8859-1) Its the first thing you should try if your dataframe contains unreadable characters. 
+
+  pd.read_csv('<Filelocation>')
+  pd.read_excel('<Excel File Location>')
+  
+ Build dataframe from inputted data : Useful when you want to ,manually instantiate simple data so that you can see how it changes as it flows
+ through a pipeline. 
+ 
+ df= pd.DataFrame([[1,'Bob','Builder'],
+                   [1,'Bob','Builder'],
+                   [1,'Bob','Builder']],
+             columns=['id','name','occupation'])
+             
+Copy a Dataframe : Useful when we want to maintain orginal copy as is . 
+
+  anime_copy=anime.copy(deep=True)
+  
+3. Export :
+
+Save to CSV : This dumps the directory as the notebook. To save the first 10 rows below is one of the example
+  
+  rating[:10].to_csv('saved_ratings.csv', index=False)
+  df.to_excel()
+  
+  
+4. Viewing and Inspecting :
+
+  Get top or bottom n records : head(3) /tail(1)
+  
+  Count Rows : len(df)
+  
+  Count Unique Rows : len(ratings['user_id'].unique())
+  
+ 
+ 5. Selecting :
+ 
+  Get a list or series of values for a column 
+  
+  anime['genre'].tolist()
+  anime['genre']
+  
+  Get a list of index values : 
+  
+   anime_modified.index.tolist()
+   
+  Get a list of column names :
+  
+    anime.columns.tolist()
+    
+    
+ 6. Adding/Dropping 
+ 
+ Append a new column with a set value 
+ 
+ anime['train set'] = True
+ 
+ 
+ Create a new data frame from a subset of columns 
+ 
+ anime[['name','episodes']]
+ 
+ 
+ Drop Specified colunmns :
+ 
+  anime.drop(['anime_id','genre','members'], axis=1).head()
+ 
+ 7. Combining 
+ 
+ Concatenate 2 dataframes 
+ 
+ df1=anime[0:2]
+ df2=anime[2:4]
+ 
+ pd.concat([df1,df2] , ignore_index=True)
+ 
+ Merge Dataframes 
+ 
+ rating.merge(anime,left_on='anime_id' , right_on='anime_id' , suffixes=('_left','_right'))
+ 
+ 8. Filtering 
+ 
+ Reterive rows with matching index values 
+ 
+ anime_modified.loc[['Haikyuu!! Second Season','Gintama']]
+ 
+ Reterive rows by numbered index values 
+ 
+ anime_modified.iloc[0:3]
+ 
+ Get rows 
+ 
+ anime[anime['type'].isin(['TV','Movie'])]
+ 
+ Slice a dataframe 
+ 
+ anime[1:3]
+ 
+ Filter by value 
+ 
+ anime[anime['rating']>8]
+ 
+ 
+9. Sorting 
+
+Sort data frame by values in a columm 
+
+ anime.sort_values('rating', ascending=False)
+ 
+ 
+ 
+10. Aggregating 
+
+Groupby and count 
+
+  anime.groupby('type').count()
+
+Group by and aggregate columns in different ways 
+
+  anime.groupby(["type"]).agg({"rating":"sum" ,"episodes":"count","name":"last"}).reset_index()
+  
+  
+11. Cleaning 
+
+Set Nan cells to some value 
+
+  pivot= pd.pivot_table(temp_df,values='rating',index=['user_id'],columns=['anime_id'],aggfunc=np.sum)
+  
+  pivot.fillna(0)
+  
+  
+12. Other 
+
+Sample Data frame 
+
+anime.sample(frac=0.25)
+
+for idx,row in anime[:2].iterrows():
+  print(idx,row)
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+             
+                
+ 
+  
+3. Export :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
